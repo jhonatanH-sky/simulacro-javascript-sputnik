@@ -4,9 +4,9 @@ export {users} from "../"
 
 export function login() {
     document.body.className = "auth.body "
-    const div  = document.createElement("div");
+    const usuario  = document.createElement("usuario");
 
-    div.innerHTML`
+    usuario.innerHTML`
         <main class="auth-container">
             <section class="auth-card">
 
@@ -42,14 +42,14 @@ export function login() {
             </section>
         </main>`
 
-        const email = div.querySelector ("#email");
-        const password = div.querySelector ("#password");
-        const auhtError = div.querySelector (".auth-error");
+        const email = usuario.querySelector ("#email");
+        const password = usuario.querySelector ("#password");
+        const auhtError = usuario.querySelector (".auth-error");
         
-        const form = div.querySelector("form");
+        const form = usuario.querySelector("form");
         form.addEventListener("submit", async (e)=>{
             e.preventDefault();
-            const users = await obtenerUsuarios();
+            const usuario = await obtenerUsuarios();
 
             if (validarLogin(email.value, password.value, users))
             {
@@ -73,4 +73,3 @@ export function login() {
         }
         return div
 }
-
