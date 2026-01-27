@@ -2,10 +2,20 @@
     "users": [
         {
             "id": "1",
-            "user": "admin@govtech.com",
+            "user": "govtech",
             "password": "123456"
         }
     ],
+
+    "newusers": [
+        {
+            "id": "2",
+            "email": "admin@govtech.com",
+            "user": "govtech",
+            "password": "123456" 
+        }
+    ],
+
     "setion": false,
     "proyectos": [
         {
@@ -45,16 +55,16 @@
             "descripcion": "Revisión panel",
             "ciudad": "Buenaventura",
             "estado": "finalizado",
-            "lon": -1,
-            "lat": 10
+            "lon": -77.07,
+            "lat": 3.89
         },
         {
             "id": "6",
             "descripcion": "Monitoreo",
             "ciudad": "Pereira",
             "estado": "activo",
-            "lon": -74.7964,
-            "lat": 10.9685
+            "lon": -75.70,
+            "lat": 4.81
         }
     ]
 }
