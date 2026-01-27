@@ -1,0 +1,60 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "user": "admin@govtech.com",
+            "password": "123456"
+        }
+    ],
+    "setion": false,
+    "proyectos": [
+        {
+            "id": "1",
+            "descripcion": "Monitoreo ambiental centro urbano",
+            "ciudad": "Medellín",
+            "estado": "activo",
+            "lon": -75.5812,
+            "lat": 6.2442
+        },
+        {
+            "id": "2",
+            "descripcion": "Estación meteorológica zona norte",
+            "ciudad": "Bogotá",
+            "estado": "pendiente",
+            "lon": -74.0721,
+            "lat": 4.711
+        },
+        {
+            "id": "3",
+            "descripcion": "Observatorio climático regional",
+            "ciudad": "Cali",
+            "estado": "finalizado",
+            "lon": -76.532,
+            "lat": 3.4516
+        },
+        {
+            "id": "4",
+            "descripcion": "Sensor de calidad del aire",
+            "ciudad": "Barranquilla",
+            "estado": "activo",
+            "lon": -74.7964,
+            "lat": 10.9685
+        },
+        {
+            "id": "5",
+            "descripcion": "Revisión panel",
+            "ciudad": "Buenaventura",
+            "estado": "finalizado",
+            "lon": -1,
+            "lat": 10
+        },
+        {
+            "id": "6",
+            "descripcion": "Monitoreo",
+            "ciudad": "Pereira",
+            "estado": "activo",
+            "lon": -74.7964,
+            "lat": 10.9685
+        }
+    ]
+}
