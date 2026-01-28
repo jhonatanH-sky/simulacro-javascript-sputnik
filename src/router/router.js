@@ -1,4 +1,5 @@
 import { HomeView } from "../views/home.js";
+import {Login,renderLogin} from "../views/login.js"
 import {
   CreateProjectView,
   initCreateProject,
@@ -8,6 +9,7 @@ import {
 const routes = {
   "/": HomeView,
   "/crear-proyecto": CreateProjectView,
+  "/login": Login
 };
 
 export function router() {
@@ -27,8 +29,14 @@ export function router() {
   // Renderiza la vista en el contenedor principal
   document.getElementById("app").innerHTML = view();
 
+if (path === "/login") {
+    renderLogin();
+  }
+
   // Inicializa la lógica específica de la vista
   if (path === "/crear-proyecto") {
     initCreateProject();
   }
+
+  
 }

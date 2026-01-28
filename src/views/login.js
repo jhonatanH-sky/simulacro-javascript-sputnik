@@ -1,12 +1,10 @@
-export {users} from "../"
 
 
 
-export function login() {
-    document.body.className = "auth.body "
-    const usuario  = document.createElement("usuario");
+const app = document.getElementById("app");
 
-    usuario.innerHTML`
+export function Login() {
+  app.innerHTML = `
         <main class="auth-container">
             <section class="auth-card">
 
@@ -17,13 +15,18 @@ export function login() {
 
             <form class="auth-form">
                 <div class="form-group">
+                <label for="user">el nombre que desees</label>
+                <input id="logUser" type="text" placeholder="nombre que desees">
+                </div>
+
+                <div class="form-group">
                 <label for="email">Correo electrónico</label>
-                <input id="email" type="email" placeholder="admin@govtech.com" required />
+                <input id="loginEmail" type="email" placeholder="admin@govtech.com" required />
                 </div>
 
                 <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input id="password" type="password" placeholder="••••••••" required />
+                <input id="loginPassword" type="password" placeholder="••••••••" required />
                 </div>
 
                 <button type="submit" class="btn btn-primary">
@@ -40,36 +43,52 @@ export function login() {
             </footer>
 
             </section>
-        </main>`
 
-        const email = usuario.querySelector ("#email");
-        const password = usuario.querySelector ("#password");
-        const auhtError = usuario.querySelector (".auth-error");
-        
-        const form = usuario.querySelector("form");
-        form.addEventListener("submit", async (e)=>{
-            e.preventDefault();
-            const usuario = await obtenerUsuarios();
-
-            if (validarLogin(email.value, password.value, users))
-            {
-                auhtError.classList.add("hidden")
-                Storage.user  = "juan"
-                iniciarSesion();
-                location.has = "#/home"
-            }
-            else
-            {
-                autError.classList.remove("hidden")
-            }
+            <p>¿No tienes cuenta? <span id="goRegister" style="color:blue;cursor:pointer">Regístrate</span></p>
+            <p id="loginMsg" style="color:red;"></p>
             
-        })
+        </main>
+  `;
 
-        function validarLogin (email, password, user){
-            for(const user of users){
-                if (user.user === email && user.password == password) {return true}
-            }
-            return false
-        }
-        return div
+  document.getElementById("loginBtn").addEventListener("click", login);
+  document.getElementById("goRegister").addEventListener("click", renderRegister);
+}
+
+async function renderLogin() {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+  const msg = document.getElementById("loginMsg");
+
+  if (!email || !password) {
+    msg.textContent = "Todos los campos son obligatorios";
+    return;
+  }
+
+  const res = await fetch(`http://localhost:3000/users?email=${email}&password=${password}`);
+  const users = await res.json();
+
+  if (users.length > 0) {
+    localStorage.setItem("user", JSON.stringify(users[0]));
+    app.innerHTML = `<h2>Bienvenido, ${users[0].name}</h2>
+                     <button id="logoutBtn">Cerrar sesión</button>`;
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("user");
+      renderLogin();
+    });
+  } else {
+    msg.textContent = "Email o contraseña incorrectos";
+  }
+}
+
+// Inicializar login o sesión activa
+const user = JSON.parse(localStorage.getItem("user"));
+if (user) {
+  app.innerHTML = `<h2>Bienvenido, ${user.name}</h2>
+                   <button id="logoutBtn">Cerrar sesión</button>`;
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("user");
+    renderLogin();
+  });
+} else {
+  renderLogin();
 }
